@@ -1,15 +1,14 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, Pressable } from 'react-native';
+import { useState } from 'react';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-import { useState } from 'react';
-
 export default function HomeScreen() {
-  const [count, setCount] = useState(0)
-  
+  const [count, setCount] = useState(0);
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -20,8 +19,20 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <Text>Counter</Text>
+        <ThemedText>Counter</ThemedText>
         <HelloWave />
+      </ThemedView>
+
+      <ThemedView style={styles.counterContainer}>
+        <ThemedText style={styles.countText}>Count: {count}</ThemedText>
+
+        <Pressable onPress={() => setCount(count + 1)} style={styles.button}>
+          <ThemedText style={styles.buttonText}>Increment</ThemedText>
+        </Pressable>
+
+        <Pressable onPress={() => setCount(0)} style={styles.button}>
+          <ThemedText style={styles.buttonText}>Reset</ThemedText>
+        </Pressable>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -32,10 +43,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    marginBottom: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  counterContainer: {
+    alignItems: 'center',
+    gap: 12,
+    marginTop: 20,
+  },
+  countText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  button: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    backgroundColor: '#61dafb',
+    borderRadius: 8,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#000',
   },
   reactLogo: {
     height: 178,
