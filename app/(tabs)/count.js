@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     color: '#000',
+    userSelect: 'none', // ⛔ disables selection
   },
   reactLogo: {
     height: 178,
